@@ -65,5 +65,13 @@ if speedhack_setSpeed then speedhack_setSpeed(1.0) end
   <LuaScript>
 local processName = "village.exe"
 openProcess(processName)
+if speedhack_setSpeed then
+  speedhack_setSpeed(0.3)
+end
+local al = getAddressList()
+if al then
+  local mr = al.getMemoryRecordByDescription("⏱️ [แนะนำ] สโลว์โมชั่น 0.3x (ช้าลง 3 เท่า - เป่านกหวีดทันสบายๆ) [ปุ่ม Num -]")
+  if mr then mr.Active = true end
+end
   </LuaScript>
 </CheatTable>
