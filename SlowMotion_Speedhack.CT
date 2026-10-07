@@ -3,7 +3,145 @@
   <CheatEntries>
     <CheatEntry>
       <ID>0</ID>
-      <Description>"=== ⏱️ Village in the Shade - Slow Motion (ควบคุมความเร็วเกม) ==="</Description>
+      <Description>"=== ⏱️ Village in the Shade - Speed Controller (ควบคุมความเร็วเกม) ==="</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>500</ID>
+      <Description>"✏️ [พิมพ์เลขเอง] ดับเบิ้ลคลิกแก้ตัวเลข Value เป็นความเร็วที่ต้องการ (เช่น 5, 20, 50, 100)"</Description>
+      <ShowAsHex>0</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>vits_custom_speed</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"=== 🚀 หมวดเร่งความเร็วเกม (Speed Up / Fast Forward) ==="</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"⚡ เร่งความเร็ว 2x (เร็วขึ้น 2 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(2.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"⚡ เร่งความเร็ว 5x (เร็วขึ้น 5 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(5.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"⚡ เร่งความเร็ว 10x (เร็วขึ้น 10 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(10.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"⚡ เร่งความเร็ว 20x (เร็วขึ้น 20 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(20.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"⚡ เร่งความเร็ว 30x (เร็วขึ้น 30 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(30.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"⚡ เร่งความเร็ว 40x (เร็วขึ้น 40 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(40.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"⚡ เร่งความเร็ว 50x (เร็วขึ้น 50 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(50.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"⚡ เร่งความเร็ว 100x (เร็วขึ้น 100 เท่า - ซิ่งติดสปีดพุ่งทะลุเวลา)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(100.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"=== ⏱️ หมวดสโลว์โมชั่น (Slow Motion - ชะลอความเร็วช่วยมินิเกม) ==="</Description>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
@@ -48,6 +186,21 @@ if speedhack_setSpeed then speedhack_setSpeed(1.0) end
     </CheatEntry>
     <CheatEntry>
       <ID>3</ID>
+      <Description>"⏱️ สโลว์โมชั่น 0.1x (ช้าลง 10 เท่า - สโลว์ระดับวินาที)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.1) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
       <Description>"⏱️ สโลว์โมชั่น 0.5x (ช้าลง 2 เท่า)"</Description>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>[ENABLE]
@@ -61,17 +214,56 @@ if speedhack_setSpeed then speedhack_setSpeed(1.0) end
 {$asm}
 </AssemblerScript>
     </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"=== 🔄 หมวดความเร็วปกติ (Normal Speed) ==="</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"🔄 ความเร็วปกติ 1.0x (Normal Speed) [ปุ่ม Num +]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>107</Key>
+          </Keys>
+          <Description>Restore Normal Speed 1.0x</Description>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
   </CheatEntries>
   <LuaScript>
 local processName = "village.exe"
 openProcess(processName)
-if speedhack_setSpeed then
-  speedhack_setSpeed(0.3)
-end
-local al = getAddressList()
-if al then
-  local mr = al.getMemoryRecordByDescription("⏱️ [แนะนำ] สโลว์โมชั่น 0.3x (ช้าลง 3 เท่า - เป่านกหวีดทันสบายๆ) [ปุ่ม Num -]")
-  if mr then mr.Active = true end
-end
+
+local speed_mem = allocateMemory(4)
+registerSymbol("vits_custom_speed", speed_mem)
+writeFloat(speed_mem, 1.0)
+
+local last_custom_speed = 1.0
+local speed_timer = createTimer(nil)
+timer_setInterval(speed_timer, 250)
+timer_onTimer(speed_timer, function()
+  local cur = readFloat(speed_mem)
+  if cur and cur > 0 and math.abs(cur - last_custom_speed) > 0.001 then
+    last_custom_speed = cur
+    if speedhack_setSpeed then
+      speedhack_setSpeed(cur)
+    end
+  end
+end)
   </LuaScript>
 </CheatTable>
