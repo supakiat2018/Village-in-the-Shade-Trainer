@@ -5,6 +5,16 @@
 
 ---
 
+## 📸 ภาพตัวอย่างการใช้งาน (Screenshots)
+
+### 🖥️ หน้าต่างโปรแกรม (Trainer & Controller GUI)
+![Trainer GUI](assets/trainer_ui.png)
+
+### 🎮 ตัวอย่างการใช้งานในเกม (In-Game Gameplay)
+![In-Game Gameplay](assets/in_game.png)
+
+---
+
 ## ✨ ฟีเจอร์หลัก (Features)
 
 ### 1. ⚡ 12 สูตรโกงหลักในเกม (Core In-Game Cheats)
@@ -56,7 +66,8 @@
    ```powershell
    python trainer.py
    ```
-4. กดเปิดสูตรโกงหรือคลิก **[ 🎒 แผงเสกไอเทม ]** ได้ทันที!
+   *(หมายเหตุ: หากตัวเกมถูกรันด้วยสิทธิ์ Administrator ให้คลิกขวาที่ `run_trainer.bat` แล้วเลือก **Run as administrator** เพื่อให้โปรแกรมสามารถเชื่อมต่อกับตัวเกมได้)*
+4. กดเปิดสูตรโกงหรือคลิก **[ 🎒 แผงเสกไอเทม / Item Spawner ]** ได้ทันที!
 
 ---
 
