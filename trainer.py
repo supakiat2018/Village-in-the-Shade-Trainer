@@ -630,7 +630,34 @@ class GameMemoryManager:
         item_ptr = self.read_uint64(slot_addr)
 
         if not (0x10000 <= item_ptr <= 0x7FFFFFFFFFFF):
-            return False, "ช่องนี้ยังว่างอยู่! (กรุณาถือหรือใส่ไอเทมอะไรก็ได้ 1 ชิ้นในเกมก่อน เช่น กิ่งไม้/ก้อนหิน แล้วกดเสกทับได้ทันที หรือใช้ปุ่ม 'เสกเข้าไฟล์เซฟ' ด้านล่างครับ)"
+            # Slot is empty in memory, clone template from an existing occupied slot
+            template_ptr = 0
+            for i in range(30):
+                p = self.read_uint64(sd_ptr + 0x32C0 + i * 8)
+                if 0x10000 <= p <= 0x7FFFFFFFFFFF:
+                    template_ptr = p
+                    break
+            if not template_ptr:
+                for i in range(10):
+                    p = self.read_uint64(sd_ptr + 0x33B8 + i * 8)
+                    if 0x10000 <= p <= 0x7FFFFFFFFFFF:
+                        template_ptr = p
+                        break
+            if not template_ptr:
+                return False, "กระเป๋าทุกช่องว่างเปล่า กรุณาเก็บของอะไรก็ได้ในเกมก่อน 1 ชิ้น"
+
+            MEM_COMMIT_RESERVE = 0x1000 | 0x2000
+            new_mem = kernel32.VirtualAllocEx(self.h_process, None, 0x300, MEM_COMMIT_RESERVE, 0x40)
+            if not new_mem:
+                return False, "VirtualAllocEx จัดสรรหน่วยความจำล้มเหลว"
+
+            template_bytes = self.read_memory(template_ptr, 0x300)
+            if not template_bytes:
+                return False, "อ่าน Template ใน RAM ล้มเหลว"
+            new_mem_addr = int(new_mem)
+            self.write_memory(new_mem_addr, template_bytes)
+            item_ptr = new_mem_addr
+            self.write_uint64(slot_addr, item_ptr)
 
         ok_h = self.write_uint64(item_ptr + 0x240, handle)
         ok_c = self.write_int32(item_ptr + 0x260, count)
