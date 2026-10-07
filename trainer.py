@@ -87,6 +87,38 @@ kernel32.VirtualAllocEx.argtypes = [wintypes.HANDLE, ctypes.c_void_p, ctypes.c_s
 kernel32.VirtualAllocEx.restype = ctypes.c_void_p
 
 
+def enable_debug_privilege():
+    try:
+        advapi32 = ctypes.windll.advapi32
+        TOKEN_ADJUST_PRIVILEGES = 0x0020
+        TOKEN_QUERY = 0x0008
+        SE_PRIVILEGE_ENABLED = 0x00000002
+
+        class LUID(ctypes.Structure):
+            _fields_ = [("LowPart", wintypes.DWORD), ("HighPart", wintypes.LONG)]
+
+        class LUID_AND_ATTRIBUTES(ctypes.Structure):
+            _fields_ = [("Luid", LUID), ("Attributes", wintypes.DWORD)]
+
+        class TOKEN_PRIVILEGES(ctypes.Structure):
+            _fields_ = [("PrivilegeCount", wintypes.DWORD), ("Privileges", LUID_AND_ATTRIBUTES * 1)]
+
+        h_tok = wintypes.HANDLE()
+        if advapi32.OpenProcessToken(kernel32.GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, ctypes.byref(h_tok)):
+            luid = LUID()
+            if advapi32.LookupPrivilegeValueW(None, "SeDebugPrivilege", ctypes.byref(luid)):
+                tp = TOKEN_PRIVILEGES()
+                tp.PrivilegeCount = 1
+                tp.Privileges[0].Luid = luid
+                tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED
+                advapi32.AdjustTokenPrivileges(h_tok, False, ctypes.byref(tp), ctypes.sizeof(tp), None, None)
+            kernel32.CloseHandle(h_tok)
+    except:
+        pass
+
+enable_debug_privilege()
+
+
 # พจนานุกรมคำแปล 2 ภาษา (Thai & English)
 TRANSLATIONS = {
     "th": {
@@ -95,6 +127,7 @@ TRANSLATIONS = {
         "header_sub": "ระบบสูตรโกงและตัวควบคุมเกม v1.20 (คลิกที่ปุ่มสีฟ้าเพื่อเปลี่ยนปุ่มลัดได้ตามต้องการ)",
         "status_searching": "🔍 กำลังค้นหา village.exe...",
         "status_connected": "🟢 เชื่อมต่อกับ village.exe สำเร็จ (PID: {pid})",
+        "status_access_denied": "⚠️ พบ village.exe (PID: {pid}) แต่เกมรันเป็น Admin (กรุณารัน Trainer เป็น Admin)",
         "status_disconnected": "🔴 ไม่พบเกม village.exe (กรุณาเปิดเกม)",
         "status_launching": "🚀 กำลังเริ่มเกม village.exe...",
         "status_killed": "🔴 บังคับปิด village.exe เรียบร้อยแล้ว",
@@ -144,6 +177,7 @@ TRANSLATIONS = {
         "header_sub": "In-Game Trainer & Controller v1.20 (Click blue hotkey button to rebind keys)",
         "status_searching": "🔍 Searching for village.exe...",
         "status_connected": "🟢 Connected to village.exe (PID: {pid})",
+        "status_access_denied": "⚠️ village.exe found (PID: {pid}) but running as Admin (Please run Trainer as Admin)",
         "status_disconnected": "🔴 village.exe Not Found (Please launch game)",
         "status_launching": "🚀 Launching village.exe...",
         "status_killed": "🔴 Force closed village.exe successfully",
@@ -368,8 +402,10 @@ class GameMemoryManager:
         self.h_process = None
         self.cheat_states = {c["id"]: False for c in CHEATS_DEF}
         self.frozen_time = None
+        self.access_denied_pid = None
 
     def find_process_and_module(self):
+        self.access_denied_pid = None
         # 1. ค้นหา Process ID ทั้งหมดของ village.exe
         h_snap = kernel32.CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0)
         if h_snap == wintypes.HANDLE(-1).value or not h_snap:
@@ -403,6 +439,9 @@ class GameMemoryManager:
         for found_pid in reversed(candidate_pids):
             h_proc = kernel32.OpenProcess(PROCESS_RIGHTS, False, found_pid)
             if not h_proc:
+                err = kernel32.GetLastError()
+                if err == 5:  # ERROR_ACCESS_DENIED
+                    self.access_denied_pid = found_pid
                 h_proc = kernel32.OpenProcess(PROCESS_ALL_ACCESS, False, found_pid)
             if not h_proc:
                 continue
@@ -2308,10 +2347,16 @@ class TrainerApp:
             )
             status_txt = self.lbl_game_status.cget("text")
             if (self.t("status_killed") not in status_txt) and (self.t("status_launching") not in status_txt):
-                self.lbl_game_status.config(
-                    text=self.t("status_disconnected"),
-                    fg="#FFAA33"
-                )
+                if getattr(self.mgr, "access_denied_pid", None):
+                    self.lbl_game_status.config(
+                        text=self.t("status_access_denied", pid=self.mgr.access_denied_pid),
+                        fg="#FF5555"
+                    )
+                else:
+                    self.lbl_game_status.config(
+                        text=self.t("status_disconnected"),
+                        fg="#FFAA33"
+                    )
 
         self.root.after(1000, self.poll_game_status)
 
