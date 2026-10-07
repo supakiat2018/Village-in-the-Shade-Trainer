@@ -1357,7 +1357,7 @@ class ItemAdderWindow(tk.Toplevel):
 
         lbl_tips = tk.Label(
             status_box,
-            text="📌 วิธีใช้:\n• แบบ 1: ถืออะไรอยู่กดปุ่มจะกลายเป็นไอเทมนั้นทันที!\n• แบบ 2: เลือกช่อง 00-29 เพื่อเสกแทนที่ช่องนั้น\n• ดับเบิ้ลคลิกที่ชื่อไอเทมในตาราง = เสกเข้ามือทันที",
+            text="📌 วิธีใช้ & ข้อสำคัญ:\n• แบบ 1: ถืออะไรอยู่กดปุ่มจะกลายเป็นไอเทมนั้นทันที!\n• แบบ 2: เลือกช่อง 00-29 เพื่อเสกแทนที่ช่องนั้น\n• ดับเบิ้ลคลิกที่ชื่อไอเทมในตาราง = เสกเข้ามือทันที\n⭐ สำคัญมาก: หลังเสกให้กด 'วางลงพื้น' แล้วเก็บขึ้นมาใหม่\n  เพื่อให้เกมตรวจจับ trigger และปลดล็อค/สวมใส่ได้สมบูรณ์!",
             font=("Segoe UI", 8),
             fg="#8888A0",
             bg="#161622",
@@ -1589,7 +1589,7 @@ class ItemAdderWindow(tk.Toplevel):
             if ok:
                 sd_ptr = mgr.get_save_data_ptr()
                 hand_slot = mgr.get_selected_hand_slot(sd_ptr) if sd_ptr else 0
-                res_text = f"✨ สำเร็จ (แบบ 1)! เสก [{item_name}] x{count} เข้ามือ (ช่อง {hand_slot:02d}) เรียบร้อยแล้ว!\n(💡 สลับช่องกระเป๋าในเกม 1 ครั้งเพื่อให้หน้าจอรีเฟรชรูปไอเทมครับ)"
+                res_text = f"✨ สำเร็จ (แบบ 1)! เสก [{item_name}] x{count} เข้ามือ (ช่อง {hand_slot:02d}) เรียบร้อยแล้ว!\n(💡 ข้อสำคัญ: ให้กด 'วางลงพื้น' แล้วเก็บขึ้นมาใหม่เพื่อให้เกมปลดล็อค/ใช้งานได้ทันที)"
                 self.lbl_status.config(text=res_text, fg="#00FF88")
                 try:
                     winsound.Beep(1200, 100)
@@ -1647,7 +1647,7 @@ class ItemAdderWindow(tk.Toplevel):
         try:
             ok, msg = mgr.set_live_item_in_slot(target_slot, target_id, count)
             if ok:
-                res_text = f"✨ สำเร็จ (แบบ 2)! เสก [{item_name}] x{count} ลงช่องที่ {target_slot:02d} ในเกมเรียบร้อยแล้ว!\n(💡 สลับช่องกระเป๋าในเกม 1 ครั้งเพื่อให้หน้าจอรีเฟรชรูปไอเทมครับ)"
+                res_text = f"✨ สำเร็จ (แบบ 2)! เสก [{item_name}] x{count} ลงช่องที่ {target_slot:02d} ในเกมเรียบร้อยแล้ว!\n(💡 ข้อสำคัญ: ให้กด 'วางลงพื้น' แล้วเก็บขึ้นมาใหม่เพื่อให้เกมปลดล็อค/ใช้งานได้ทันที)"
                 self.lbl_status.config(text=res_text, fg="#00FF88")
                 try:
                     winsound.Beep(1200, 100)
