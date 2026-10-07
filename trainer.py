@@ -539,6 +539,10 @@ class GameMemoryManager:
         data = int(val).to_bytes(8, byteorder="little", signed=True)
         return self.write_memory(addr, data)
 
+    def write_uint64(self, addr, val):
+        data = (int(val) & 0xFFFFFFFFFFFFFFFF).to_bytes(8, byteorder="little", signed=False)
+        return self.write_memory(addr, data)
+
     def get_save_data_ptr(self):
         if not self.h_process or not self.base_addr:
             return 0
@@ -1580,23 +1584,27 @@ class ItemAdderWindow(tk.Toplevel):
         target_id = self.selected_item["id"]
         item_name = self.selected_item["th"]
 
-        ok, msg = mgr.set_live_item_in_hand(target_id, count)
-        if ok:
-            sd_ptr = mgr.get_save_data_ptr()
-            hand_slot = mgr.get_selected_hand_slot(sd_ptr) if sd_ptr else 0
-            res_text = f"✨ สำเร็จ (แบบ 1)! เสก [{item_name}] x{count} เข้ามือ (ช่อง {hand_slot:02d}) เรียบร้อยแล้ว!"
-            self.lbl_status.config(text=res_text, fg="#00FF88")
-            try:
-                winsound.Beep(1200, 100)
-            except:
-                pass
-            self.refresh_live_slots()
-        else:
-            self.lbl_status.config(text=f"❌ เสกไม่สำเร็จ: {msg}", fg="#FF5555")
-            try:
-                winsound.Beep(400, 150)
-            except:
-                pass
+        try:
+            ok, msg = mgr.set_live_item_in_hand(target_id, count)
+            if ok:
+                sd_ptr = mgr.get_save_data_ptr()
+                hand_slot = mgr.get_selected_hand_slot(sd_ptr) if sd_ptr else 0
+                res_text = f"✨ สำเร็จ (แบบ 1)! เสก [{item_name}] x{count} เข้ามือ (ช่อง {hand_slot:02d}) เรียบร้อยแล้ว!\n(💡 สลับช่องกระเป๋าในเกม 1 ครั้งเพื่อให้หน้าจอรีเฟรชรูปไอเทมครับ)"
+                self.lbl_status.config(text=res_text, fg="#00FF88")
+                try:
+                    winsound.Beep(1200, 100)
+                except:
+                    pass
+                self.refresh_live_slots()
+            else:
+                self.lbl_status.config(text=f"❌ เสกไม่สำเร็จ: {msg}", fg="#FF5555")
+                try:
+                    winsound.Beep(400, 150)
+                except:
+                    pass
+        except Exception as e:
+            self.lbl_status.config(text=f"❌ เกิดข้อผิดพลาด: {e}", fg="#FF5555")
+            messagebox.showerror("เกิดข้อผิดพลาด", f"ไม่สามารถเสกไอเทมได้:\n{e}", parent=self)
 
     def do_spawn_in_slot(self):
         """แบบที่ 2: เสกแทนที่ช่องกระเป๋า 00-29 (Slot) ทันทีใน RAM"""
@@ -1636,21 +1644,25 @@ class ItemAdderWindow(tk.Toplevel):
         target_id = self.selected_item["id"]
         item_name = self.selected_item["th"]
 
-        ok, msg = mgr.set_live_item_in_slot(target_slot, target_id, count)
-        if ok:
-            res_text = f"✨ สำเร็จ (แบบ 2)! เสก [{item_name}] x{count} ลงช่องที่ {target_slot:02d} ในเกมเรียบร้อยแล้ว!"
-            self.lbl_status.config(text=res_text, fg="#00FF88")
-            try:
-                winsound.Beep(1200, 100)
-            except:
-                pass
-            self.refresh_live_slots()
-        else:
-            self.lbl_status.config(text=f"❌ เสกไม่สำเร็จ: {msg}", fg="#FF5555")
-            try:
-                winsound.Beep(400, 150)
-            except:
-                pass
+        try:
+            ok, msg = mgr.set_live_item_in_slot(target_slot, target_id, count)
+            if ok:
+                res_text = f"✨ สำเร็จ (แบบ 2)! เสก [{item_name}] x{count} ลงช่องที่ {target_slot:02d} ในเกมเรียบร้อยแล้ว!\n(💡 สลับช่องกระเป๋าในเกม 1 ครั้งเพื่อให้หน้าจอรีเฟรชรูปไอเทมครับ)"
+                self.lbl_status.config(text=res_text, fg="#00FF88")
+                try:
+                    winsound.Beep(1200, 100)
+                except:
+                    pass
+                self.refresh_live_slots()
+            else:
+                self.lbl_status.config(text=f"❌ เสกไม่สำเร็จ: {msg}", fg="#FF5555")
+                try:
+                    winsound.Beep(400, 150)
+                except:
+                    pass
+        except Exception as e:
+            self.lbl_status.config(text=f"❌ เกิดข้อผิดพลาด: {e}", fg="#FF5555")
+            messagebox.showerror("เกิดข้อผิดพลาด", f"ไม่สามารถเสกไอเทมได้:\n{e}", parent=self)
 
     def do_add_item(self):
         if not self.selected_item:
