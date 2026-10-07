@@ -18,7 +18,7 @@
 | :---: | :---: |
 | ![Drop Item](assets/drop_item.png) | ![Item Unlocked](assets/item_unlocked.png) |
 
----
+หากทิ้งและของหายให้ ไปนอนและออกเกมและเปิดมาและทิ้งอีกทีจะหายบั๊ก
 
 ## ✨ ฟีเจอร์หลัก (Features)
 
