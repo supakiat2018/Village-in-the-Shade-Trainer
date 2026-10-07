@@ -142,6 +142,7 @@ TRANSLATIONS = {
         "btn_reset_keys": "⌨️ รีเซ็ตปุ่ม (F1-F12)",
         "btn_kill": "🛑 ปิดเกมทันที (Kill)",
         "btn_item_adder": "🎒 แผงเสกไอเทม (Item Adder)",
+        "btn_slow_mo": "⏱️ สโลว์โมชั่น (Slow Mo)",
         "btn_lang": "🌐 ภาษา: ไทย 🇹🇭",
         "btn_cheat_on": "🟢 เปิด",
         "btn_cheat_off": "ปิด",
@@ -192,6 +193,7 @@ TRANSLATIONS = {
         "btn_reset_keys": "⌨️ Reset Keys (F1-F12)",
         "btn_kill": "🛑 Kill Game",
         "btn_item_adder": "🎒 Item Spawner",
+        "btn_slow_mo": "⏱️ Slow Motion",
         "btn_lang": "🌐 Language: English 🇬🇧",
         "btn_cheat_on": "🟢 ON",
         "btn_cheat_off": "OFF",
@@ -1879,6 +1881,7 @@ class TrainerApp:
         self.btn_disable_all.config(text=self.t("btn_disable_all"))
         self.btn_reset_keys.config(text=self.t("btn_reset_keys"))
         if hasattr(self, "btn_item_adder"): self.btn_item_adder.config(text=self.t("btn_item_adder"))
+        if hasattr(self, "btn_slow_mo"): self.btn_slow_mo.config(text=self.t("btn_slow_mo"))
         self.btn_kill.config(text=self.t("btn_kill"))
 
         # ข้อความคำแนะนำด้านล่าง
@@ -2060,6 +2063,22 @@ class TrainerApp:
             pady=4
         )
         self.btn_item_adder.pack(side="left", padx=4)
+
+        self.btn_slow_mo = tk.Button(
+            action_bar,
+            text=self.t("btn_slow_mo"),
+            font=("Segoe UI", 9, "bold"),
+            bg="#9E5B28",
+            fg="#FFFFFF",
+            activebackground="#BF7338",
+            activeforeground="#FFFFFF",
+            relief="flat",
+            cursor="hand2",
+            command=self.open_slow_motion_guide,
+            padx=9,
+            pady=4
+        )
+        self.btn_slow_mo.pack(side="left", padx=4)
 
         self.btn_kill = tk.Button(
             action_bar,
@@ -2312,6 +2331,46 @@ class TrainerApp:
             self.item_adder_win.focus_force()
             return
         self.item_adder_win = ItemAdderWindow(self.root, self)
+
+    def open_slow_motion_guide(self):
+        """เปิดไฟล์ตาราง Cheat Engine สำหรับ Slow Motion และแนะนำวิธีใช้"""
+        curr_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
+        ct_file = os.path.join(curr_dir, "SlowMotion_Speedhack.CT")
+        if not os.path.isfile(ct_file):
+            ct_file = os.path.join(os.path.expanduser("~"), "Desktop", "SlowMotion_Speedhack.CT")
+        if not os.path.isfile(ct_file):
+            ct_file = os.path.join(curr_dir, "Village in the Shade1.20.CT")
+
+        opened = False
+        if os.path.isfile(ct_file):
+            try:
+                os.startfile(ct_file)
+                opened = True
+            except:
+                pass
+
+        if self.cur_lang == "th":
+            msg = (
+                "⏱️ วิธีใช้โหมดสโลว์โมชั่น (Slow Motion / Speedhack):\n\n"
+                "1. ตัวโปรแกรมได้เปิดตาราง Cheat Engine (SlowMotion) ให้เรียบร้อยแล้ว\n"
+                "2. ติ๊กถูกที่ช่อง [⏱️ สโลว์โมชั่น 0.3x] (หรือกดปุ่ม Num - บนแป้นตัวเลข)\n"
+                "3. เกมจะช้าลง 3 เท่าทันที ทำให้เป่านกหวีดตามจังหวะได้ทันสบายๆ 100%!\n"
+                "4. เมื่อเป่าผ่านแล้ว ให้กดติ๊กออก (หรือกดปุ่ม Num - อีกครั้ง) เพื่อคืนความเร็วปกติครับ\n\n"
+                "💡 หรือในหน้าต่าง Cheat Engine: ติ๊ก [Enable Speedhack] ทางขวามือ แล้วปรับเลข Speed เป็น 0.3 แล้วกด Apply ได้ทันทีครับ"
+            )
+            title = "⏱️ โหมดสโลว์โมชั่น (Slow Motion)"
+        else:
+            msg = (
+                "⏱️ How to use Slow Motion (Speedhack):\n\n"
+                "1. Cheat Engine table (SlowMotion) has been launched.\n"
+                "2. Check the box [⏱️ Slow Motion 0.3x] (or press Num - on keyboard).\n"
+                "3. Game will run 3x slower, giving plenty of time to hit all rhythm notes!\n"
+                "4. When finished, uncheck it (or press Num - again) to restore normal speed.\n\n"
+                "💡 Alternatively in Cheat Engine: check [Enable Speedhack] on the right, set speed to 0.3, and click Apply."
+            )
+            title = "⏱️ Slow Motion Mode"
+
+        messagebox.showinfo(title, msg, parent=self.root)
 
     def launch_game(self):
         if self.mgr.h_process:

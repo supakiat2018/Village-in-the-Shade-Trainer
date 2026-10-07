@@ -1,0 +1,2007 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"=== Village in the Shade  -  Table v1.0  -  Game v1.20 ==="</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>100</ID>
+      <Description>"⏱️ [Speedhack] สโลว์โมชั่น 0.3x (Slow Motion สำหรับมินิเกมเป่านกหวีด - ช้าลง 3 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.3) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>101</ID>
+      <Description>"⏱️ [Speedhack] สโลว์โมชั่น 0.2x (Slow Motion ช้าลง 5 เท่า - สโลว์มาก เป่าทัน 100%)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.2) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>102</ID>
+      <Description>"⏱️ [Speedhack] สโลว์โมชั่น 0.5x (Slow Motion ช้าลง 2 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.5) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Game Time (freeze to stop time)"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>"village.exe"+10FCBB0</Address>
+      <Offsets>
+        <Offset>3270</Offset>
+        <Offset>208</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Money"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>"village.exe"+10FCBB0</Address>
+      <Offsets>
+        <Offset>32A0</Offset>
+        <Offset>208</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Stamina"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"village.exe"+10FCBB0</Address>
+      <Offsets>
+        <Offset>398</Offset>
+        <Offset>32B8</Offset>
+        <Offset>208</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Stamina Max"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"village.exe"+10FCBB0</Address>
+      <Offsets>
+        <Offset>3A4</Offset>
+        <Offset>32B8</Offset>
+        <Offset>208</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Items Won't Decrease"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(vitsItemSub,village.exe,48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 20 41 56 48 83 EC 20 48 63 DA 48 8B F1 45 85 C0 0F 88 ?? ?? ?? ?? 85 D2)
+registersymbol(vitsItemSub)
+
+vitsItemSub:
+  db B8 01 00 00 00 C3
+
+[DISABLE]
+vitsItemSub:
+  db 48 89 5C 24 08 48
+
+unregistersymbol(vitsItemSub)</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"God Mode"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(vitsInvinc,village.exe,40 53 48 83 EC 20 48 8B 05 ?? ?? ?? ?? 48 8B D9 0F 57 C9 48 8B 90 68 02 00 00 4C 8B 82 40 03 00 00)
+registersymbol(vitsInvinc)
+
+vitsInvinc:
+  db B0 01 C3
+
+[DISABLE]
+vitsInvinc:
+  db 40 53 48
+
+unregistersymbol(vitsInvinc)</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"No Materials Required"</Description>
+      <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"├ Crafting"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(vitsCraftMat,village.exe,48 89 5C 24 18 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 D9 48 81 EC C0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 17 48 8B DA 48 89 4D 9F 48 8B 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 4C 8B D8 48 89 5D 87)
+registersymbol(vitsCraftMat)
+
+vitsCraftMat:
+  db B0 01 C3
+
+[DISABLE]
+vitsCraftMat:
+  db 48 89 5C
+
+unregistersymbol(vitsCraftMat)</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"├ Cooking"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(vitsCookMat,village.exe,48 89 5C 24 18 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 D9 48 81 EC D0 00 00 00 48 8B 05 ?? ?? ?? ??)
+registersymbol(vitsCookMat)
+
+vitsCookMat:
+  db B0 01 C3
+
+[DISABLE]
+vitsCookMat:
+  db 48 89 5C
+
+unregistersymbol(vitsCookMat)</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>11</ID>
+          <Description>"├ Smithing"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(vitsAnvilMat,village.exe,48 89 5C 24 08 48 89 74 24 18 48 89 7C 24 20 55 41 54 41 55 41 56 41 57 48 8D 6C 24 C9 48 81 EC C0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 27)
+registersymbol(vitsAnvilMat)
+
+vitsAnvilMat:
+  db B0 01 C3
+
+[DISABLE]
+vitsAnvilMat:
+  db 48 89 5C
+
+unregistersymbol(vitsAnvilMat)</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"├ Building"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(vitsBuildMat,village.exe,48 89 5C 24 08 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 D9 48 81 EC C0 00 00 00)
+registersymbol(vitsBuildMat)
+
+vitsBuildMat:
+  db B0 01 C3
+
+[DISABLE]
+vitsBuildMat:
+  db 48 89 5C
+
+unregistersymbol(vitsBuildMat)</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"└ Dyeing"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(vitsDyeMat,village.exe,48 89 5C 24 18 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 D9 48 81 EC F0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 17 48 8B FA)
+registersymbol(vitsDyeMat)
+
+vitsDyeMat:
+  db B0 01 C3
+
+[DISABLE]
+vitsDyeMat:
+  db 48 89 5C
+
+unregistersymbol(vitsDyeMat)</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Can Submit Any Item"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(vitsBundleAny,village.exe,48 89 5C 24 18 48 89 74 24 20 55 57 41 54 41 56 41 57 48 8D AC 24 40 FF FF FF 48 81 EC C0 01 00 00 48 63 DA)
+registersymbol(vitsBundleAny)
+
+vitsBundleAny+44:
+  db 90 90 90 90 90 90
+
+[DISABLE]
+vitsBundleAny+44:
+  db 0F 84 BA 03 00 00
+
+unregistersymbol(vitsBundleAny)</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"Enable Inventory Editing"</Description>
+      <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return end
+if vitsSelStart == nil then
+  error("Open Table -&gt; Show Cheat Table Lua Script and press Execute once")
+end
+vitsSelStart()
+{$asm}
+
+[DISABLE]
+{$lua}
+if syntaxcheck then return end
+if vitsSelStop ~= nil then vitsSelStop() end
+{$asm}</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"├ Item Name Language (Dropdown)"</Description>
+          <DropDownList DescriptionOnly="0" DisplayValueAsItem="0" ReadOnly="1">64:Japanese
+72:English
+80:French
+88:Spanish
+96:Chinese
+104:Korean</DropDownList>
+          <ShowAsHex>0</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>vitsLang</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"├ Selected Item Editor"</Description>
+          <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>18</ID>
+              <Description>"├ Name"</Description>
+              <ShowAsHex>0</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>String</VariableType>
+              <Length>48</Length>
+              <Unicode>1</Unicode>
+              <CodePage>0</CodePage>
+              <ZeroTerminate>1</ZeroTerminate>
+              <Address>vitsSelName</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>19</ID>
+              <Description>"├ Stack Count"</Description>
+              <ShowAsHex>0</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>vitsSelItem</Address>
+              <Offsets>
+                <Offset>260</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>20</ID>
+              <Description>"└ Item ID (Dropdown)"</Description>
+              <ShowAsHex>0</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>vitsSelID</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"└ Inventory Editor"</Description>
+          <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>22</ID>
+              <Description>"├ Slot 00"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>23</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>24</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32C0</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>25</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+0</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"├ Slot 01"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>27</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>28</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32C8</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>29</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>30</ID>
+              <Description>"├ Slot 02"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>31</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+100</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>32</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32D0</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>33</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+8</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>34</ID>
+              <Description>"├ Slot 03"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>35</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+180</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>36</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32D8</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>37</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>38</ID>
+              <Description>"├ Slot 04"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>39</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+200</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>40</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32E0</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>41</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+10</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>42</ID>
+              <Description>"├ Slot 05"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>43</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+280</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>44</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32E8</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>45</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+14</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>46</ID>
+              <Description>"├ Slot 06"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>47</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+300</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>48</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32F0</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>49</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+18</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>50</ID>
+              <Description>"├ Slot 07"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>51</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+380</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>52</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>32F8</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>53</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+1C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>54</ID>
+              <Description>"├ Slot 08"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>55</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+400</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>56</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3300</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>57</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+20</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>58</ID>
+              <Description>"├ Slot 09"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>59</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+480</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>60</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3308</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>61</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+24</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>62</ID>
+              <Description>"├ Slot 10"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>63</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+500</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>64</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3310</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>65</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+28</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>66</ID>
+              <Description>"├ Slot 11"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>67</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+580</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>68</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3318</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>69</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+2C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>70</ID>
+              <Description>"├ Slot 12"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>71</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+600</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>72</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3320</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>73</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+30</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>74</ID>
+              <Description>"├ Slot 13"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>75</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+680</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>76</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3328</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>77</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+34</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>78</ID>
+              <Description>"├ Slot 14"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>79</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+700</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>80</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3330</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>81</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+38</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>82</ID>
+              <Description>"├ Slot 15"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>83</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+780</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>84</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3338</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>85</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+3C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>86</ID>
+              <Description>"├ Slot 16"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>87</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+800</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>88</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3340</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>89</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+40</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>90</ID>
+              <Description>"├ Slot 17"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>91</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+880</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>92</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3348</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>93</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+44</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>94</ID>
+              <Description>"├ Slot 18"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>95</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+900</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>96</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3350</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>97</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+48</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>98</ID>
+              <Description>"├ Slot 19"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>99</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+980</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>100</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3358</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>101</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+4C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>102</ID>
+              <Description>"├ Slot 20"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>103</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+A00</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>104</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3360</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+50</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>106</ID>
+              <Description>"├ Slot 21"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>107</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+A80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>108</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3368</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>109</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+54</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>110</ID>
+              <Description>"├ Slot 22"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>111</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+B00</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>112</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3370</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>113</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+58</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>114</ID>
+              <Description>"├ Slot 23"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>115</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+B80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>116</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3378</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>117</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+5C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>118</ID>
+              <Description>"├ Slot 24"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>119</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+C00</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>120</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3380</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>121</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+60</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>122</ID>
+              <Description>"├ Slot 25"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>123</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+C80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>124</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3388</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>125</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+64</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>126</ID>
+              <Description>"├ Slot 26"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>127</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+D00</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>128</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3390</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>129</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+68</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>130</ID>
+              <Description>"├ Slot 27"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>131</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+D80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>132</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>3398</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>133</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+6C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>134</ID>
+              <Description>"├ Slot 28"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>135</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+E00</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>136</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>33A0</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>137</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+70</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>138</ID>
+              <Description>"└ Slot 29"</Description>
+              <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>139</ID>
+                  <Description>"├ Name"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>String</VariableType>
+                  <Length>48</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>vitsInvNames+E80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>140</ID>
+                  <Description>"├ Stack Count"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"village.exe"+10FCBB0</Address>
+                  <Offsets>
+                    <Offset>260</Offset>
+                    <Offset>33A8</Offset>
+                    <Offset>208</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>141</ID>
+                  <Description>"└ Item ID (Dropdown)"</Description>
+                  <ShowAsHex>0</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>vitsInvIDs+74</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <LuaScript>local GETTER_SIG =
+  "48 8B 05 ?? ?? ?? ?? 48 8B 6C 24 38 48 8B 74 24 40 49 8B 50 10 " ..
+  "48 8B 88 08 02 00 00 48 8B 7C 24 48 48 8B 81 "
+
+local function scanOne(sig)
+  local list = AOBScan(sig)
+  if list == nil then return nil end
+  local addr = nil
+  if list.getCount() == 1 then addr = tonumber(list[0], 16) end
+  list.destroy()
+  return addr
+end
+
+function vitsResolve()
+  local modbase = getAddress("village.exe")
+  if modbase == nil or modbase == 0 then
+    print("[vits] not attached to village.exe - attach first, then run this again")
+    return
+  end
+
+  local site = scanOne(GETTER_SIG .. "70 32 00 00")
+  if site == nil then
+    print("[vits] time getter signature not found, or not unique")
+    return
+  end
+
+  local global = site + 7 + readInteger(site + 3)
+  print(string.format("[vits] Address field should be:  \"village.exe\"+%X", global - modbase))
+  print(string.format("[vits] time member offset  = %X", readInteger(site + 36)))
+
+  local msite = scanOne(GETTER_SIG .. "A0 32 00 00")
+  if msite ~= nil then
+    print(string.format("[vits] money member offset = %X", readInteger(msite + 36)))
+  end
+
+  local state = readPointer(readPointer(global) + 0x208)
+  if state == nil or state == 0 then
+    print("[vits] state object is null - load a save, then run this again")
+  else
+    local status = readPointer(state + 0x32B8)
+    print(string.format("[vits] state = %X   time = %d   money = %d",
+          state, readQword(state + 0x3270), readQword(state + 0x32A0)))
+    if status ~= nil and status ~= 0 then
+      print(string.format("[vits] ST = %d / %d",
+            readInteger(status + 0x398), readInteger(status + 0x3A4)))
+    end
+  end
+end
+
+local VITS_GI      = "village.exe+10FCBB0"
+local VITS_SAVE    = 0x208
+local VITS_INV     = 0x32C0
+local VITS_INVMAX  = 30
+local VITS_SEL     = 0x33B0
+local VITS_TOOL    = 0x33B8
+local VITS_TOOLMAX = 10
+local VITS_HANDLE  = 0x240
+local VITS_COUNT   = 0x260
+local VITS_NAMEBUF = 128
+
+local VITS_LANGS = {
+  { 0x40, "Japanese" },
+  { 0x48, "English"  },
+  { 0x50, "French"   },
+  { 0x58, "Spanish"  },
+  { 0x60, "Chinese"  },
+  { 0x68, "Korean"   },
+}
+local VITS_LANGNAME = {}
+for _, e in ipairs(VITS_LANGS) do VITS_LANGNAME[e[1]] = e[2] end
+
+vitsLangCur = vitsLangCur or 0x48
+
+vitsItemIndex = nil
+vitsSelTimer  = nil
+vitsMem       = nil
+
+local nameCache = {}
+local idShadow  = {}
+
+local VITS_LAYOUT = {
+  { "vitsSelItem",   0x0000 },
+  { "vitsSelID",     0x0008 },
+  { "vitsSelName",   0x0010 },
+  { "vitsInvNames",  0x0090 },
+  { "vitsInvIDs",    0x0F90 },
+  { "vitsLang",      0x1010 },
+}
+local OFF_SELID, OFF_SELNAME = 0x0008, 0x0010
+local OFF_NAMES, OFF_IDS, OFF_LANG = 0x0090, 0x0F90, 0x1010
+
+local function setStatus(msg)
+  print("[vits] " .. msg)
+end
+
+function vitsSaveData()
+  local gi = readPointer(VITS_GI)
+  if gi == nil or gi == 0 then return nil end
+  local sd = readPointer(gi + VITS_SAVE)
+  if sd == nil or sd == 0 then return nil end
+  return sd
+end
+
+local function utf8ToUtf16(s)
+  local out, i, n = {}, 1, #s
+  while i &lt;= n and #out &lt; VITS_NAMEBUF - 2 do
+    local c = s:byte(i)
+    local cp, len
+    if c &lt; 0x80 then cp, len = c, 1
+    elseif c &lt; 0xE0 then cp, len = c - 0xC0, 2
+    elseif c &lt; 0xF0 then cp, len = c - 0xE0, 3
+    else cp, len = c - 0xF0, 4 end
+    if i + len - 1 &gt; n then break end
+    for k = 1, len - 1 do
+      local b = s:byte(i + k)
+      if b == nil or b &lt; 0x80 then return out end
+      cp = cp * 64 + (b - 0x80)
+    end
+    i = i + len
+    if cp &lt; 0x10000 then
+      out[#out + 1] = cp % 256
+      out[#out + 1] = math.floor(cp / 256)
+    else
+      cp = cp - 0x10000
+      local hi, lo = 0xD800 + math.floor(cp / 0x400), 0xDC00 + (cp % 0x400)
+      out[#out + 1] = hi % 256
+      out[#out + 1] = math.floor(hi / 256)
+      out[#out + 1] = lo % 256
+      out[#out + 1] = math.floor(lo / 256)
+    end
+  end
+  return out
+end
+
+local function writeUtf16(buf, s)
+  local bytes = utf8ToUtf16(s or "")
+  bytes[#bytes + 1] = 0
+  bytes[#bytes + 1] = 0
+  writeBytes(buf, bytes)
+end
+
+local function vitsSeedHandle(sd)
+  for _, a in ipairs({ { VITS_INV, VITS_INVMAX }, { VITS_TOOL, VITS_TOOLMAX } }) do
+    for i = 0, a[2] - 1 do
+      local p = readPointer(sd + a[1] + i * 8)
+      if p ~= nil and p ~= 0 then
+        local h = readPointer(p + VITS_HANDLE)
+        if h ~= nil and h ~= 0 then return h end
+      end
+    end
+  end
+  return nil
+end
+
+function vitsBuildItemIndex()
+  local sd = vitsSaveData()
+  if sd == nil then return nil end
+  local seed = vitsSeedHandle(sd)
+  if seed == nil then
+    print("[vits] you hold no items, so the item database cannot be walked")
+    return nil
+  end
+
+  local first = seed - 0x18
+  local node, map, n = first, {}, 0
+  repeat
+    local key = readQword(node + 0x10)
+    local val = readQword(node + 0x18)
+    if key ~= nil and val ~= nil and val ~= 0 and key &gt; 0 and key &lt; 10000000 then
+      if readQword(val) == key then map[key] = node + 0x18 end
+    end
+    local nxt = readQword(node)
+    if nxt == nil or nxt == 0 then break end
+    node = nxt
+    n = n + 1
+  until node == first or n &gt; 30000
+
+  vitsItemIndex = map
+  return map
+end
+
+local function handleValid(h, id)
+  if h == nil then return false end
+  local rec = readQword(h)
+  return rec ~= nil and rec ~= 0 and readQword(rec) == id
+end
+
+function vitsItemHandle(id)
+  local h = vitsItemIndex and vitsItemIndex[id]
+  if handleValid(h, id) then return h end
+  vitsBuildItemIndex()
+  h = vitsItemIndex and vitsItemIndex[id]
+  if handleValid(h, id) then return h end
+  return nil
+end
+
+local function nameOfHandle(h)
+  if h == nil or h == 0 then return nil end
+  local rec = readQword(h)
+  if rec == nil or rec == 0 then return nil end
+  local p = readQword(rec + vitsLangCur)
+  if p == nil or p == 0 then return nil end
+  local s = readString(p, 48, false)
+  if s == nil or s == "" then return nil end
+  return s
+end
+
+function vitsItemName(id)
+  return nameOfHandle(vitsItemHandle(id))
+end
+
+local function langCoverage(limit)
+  if vitsItemIndex == nil then return 0, 0 end
+  local seen, named = 0, 0
+  for _, h in pairs(vitsItemIndex) do
+    seen = seen + 1
+    if nameOfHandle(h) ~= nil then named = named + 1 end
+    if seen &gt;= limit then break end
+  end
+  return named, seen
+end
+
+function vitsLangReport()
+  if vitsItemIndex == nil and vitsBuildItemIndex() == nil then return end
+  local save = vitsLangCur
+  for _, e in ipairs(VITS_LANGS) do
+    vitsLangCur = e[1]
+    local named, seen = langCoverage(100000)
+    print(string.format("[vits] +%02X  %-9s  %d / %d named", e[1], e[2], named, seen))
+  end
+  vitsLangCur = save
+end
+
+function vitsNameScan(id)
+  if vitsItemIndex == nil and vitsBuildItemIndex() == nil then return end
+  local h = id and vitsItemHandle(id) or nil
+  if h == nil then
+    local best = nil
+    for k, v in pairs(vitsItemIndex) do
+      if best == nil or k &lt; best then best, h = k, v end
+    end
+    id = best
+  end
+  if h == nil then return end
+  local rec = readQword(h)
+  if rec == nil or rec == 0 then return end
+  print(string.format("[vits] item %d, record %X", id, rec))
+  for off = 0, 0xF8, 8 do
+    local p = readQword(rec + off)
+    if p ~= nil and p &gt; 0x10000 then
+      local s = readString(p, 48, false)
+      if s ~= nil and s ~= "" then
+        print(string.format("[vits] +%02X  %s", off, s))
+      end
+    end
+  end
+end
+
+local function applyLang(off, announce)
+  vitsLangCur = off
+  nameCache = {}
+  local named, seen = langCoverage(200)
+  if seen &gt; 0 and named == 0 then
+    setStatus(string.format("%s (+%02X) names are not in this build",
+                            VITS_LANGNAME[off], off))
+  elseif announce then
+    setStatus(string.format("item names: %s (+%02X)", VITS_LANGNAME[off], off))
+  end
+  vitsFillDropdowns()
+end
+
+local function pollLang()
+  local want = readInteger(vitsMem + OFF_LANG)
+  if want == nil or want == vitsLangCur then return end
+  if VITS_LANGNAME[want] == nil then
+    writeInteger(vitsMem + OFF_LANG, vitsLangCur)
+    return
+  end
+  applyLang(want, true)
+end
+
+local function itemHandleOf(item)
+  if item == nil or item == 0 then return 0 end
+  return readPointer(item + VITS_HANDLE) or 0
+end
+
+local function itemIdOf(item)
+  local h = itemHandleOf(item)
+  if h == 0 then return 0 end
+  local rec = readQword(h)
+  if rec == nil or rec == 0 then return 0 end
+  return readQword(rec) or 0
+end
+
+function vitsItemList(filter)
+  if vitsItemIndex == nil and vitsBuildItemIndex() == nil then return end
+  local ids = {}
+  for id, _ in pairs(vitsItemIndex) do ids[#ids + 1] = id end
+  table.sort(ids)
+  local n = 0
+  for _, id in ipairs(ids) do
+    local nm = nameOfHandle(vitsItemIndex[id]) or ""
+    if filter == nil or string.find(nm, filter, 1, true) then
+      print(string.format("%7d  %s", id, nm))
+      n = n + 1
+    end
+  end
+  print(string.format("[vits] %d items", n))
+end
+
+function vitsFillDropdowns()
+  if vitsItemIndex == nil and vitsBuildItemIndex() == nil then
+    print("[vits] item database unreadable, no drop-down built (load a save first)")
+    return 0
+  end
+  local ids = {}
+  for id, _ in pairs(vitsItemIndex) do ids[#ids + 1] = id end
+  table.sort(ids)
+  local lines = {}
+  for _, id in ipairs(ids) do
+    lines[#lines + 1] = string.format("%d:%s", id, nameOfHandle(vitsItemIndex[id]) or "")
+  end
+  local text = table.concat(lines, "\n")
+
+  local al = getAddressList()
+  local n = 0
+  for i = 0, al.Count - 1 do
+    local mr = al.getMemoryRecord(i)
+    local d = mr.Description
+    if d ~= nil and string.find(d, "Item ID", 1, true) ~= nil then
+      local ok = pcall(function()
+        mr.DropDownList.Text = text
+        mr.DropDownReadOnly = false
+        mr.DropDownDescriptionOnly = false
+        mr.DisplayAsDropDownListItem = false
+      end)
+      if ok then n = n + 1 end
+    end
+  end
+  print(string.format("[vits] %d items loaded into %d drop-downs", #ids, n))
+  return n
+end
+
+local function refreshName(buf, item)
+  local h = itemHandleOf(item)
+  if nameCache[buf] == h then return end
+  nameCache[buf] = h
+  writeUtf16(buf, nameOfHandle(h ~= 0 and h or nil) or "")
+end
+
+local function syncId(buf, item, slot)
+  local actual = itemIdOf(item)
+  local cur = readInteger(buf)
+  if cur == nil then return end
+
+  local known = idShadow[buf]
+  if known ~= nil and cur ~= known then
+    if cur ~= 0 then
+      if item == 0 then
+        setStatus("slot " .. slot .. " is empty, nothing to replace")
+      else
+        local h = vitsItemHandle(cur)
+        if h == nil then
+          setStatus("id " .. cur .. " is not in the item database")
+        else
+          writeQword(item + VITS_HANDLE, h)
+          nameCache = {}
+          setStatus(string.format("slot %d: %s -&gt; %s (x%d)", slot,
+                    vitsItemName(actual) or tostring(actual),
+                    nameOfHandle(h) or tostring(cur),
+                    readInteger(item + VITS_COUNT) or 0))
+          actual = itemIdOf(item)
+        end
+      end
+    end
+  elseif known ~= nil and cur == actual then
+    return
+  end
+
+  writeInteger(buf, actual)
+  idShadow[buf] = actual
+end
+
+function vitsSelTick()
+  if vitsMem == nil then return end
+  pollLang()
+  local sd = vitsSaveData()
+  if sd == nil then
+    writeQword(vitsMem, 0)
+    return
+  end
+
+  local slot = readInteger(sd + VITS_SEL) or 0
+  local item = 0
+  if slot &gt;= 0 and slot &lt; VITS_INVMAX then
+    item = readPointer(sd + VITS_INV + slot * 8) or 0
+  end
+  writeQword(vitsMem, item)
+  refreshName(vitsMem + OFF_SELNAME, item)
+  syncId(vitsMem + OFF_SELID, item, slot)
+
+  for i = 0, VITS_INVMAX - 1 do
+    local p = readPointer(sd + VITS_INV + i * 8) or 0
+    refreshName(vitsMem + OFF_NAMES + i * VITS_NAMEBUF, p)
+    syncId(vitsMem + OFF_IDS + i * 4, p, i)
+  end
+end
+
+function vitsSelStart()
+  nameCache = {}
+  idShadow = {}
+
+  if vitsMem == nil or vitsMem == 0 then
+    vitsMem = allocateMemory(8192)
+    if vitsMem == nil or vitsMem == 0 then
+      error("could not allocate memory (are you attached to village.exe?)")
+    end
+  end
+  for _, e in ipairs(VITS_LAYOUT) do
+    registerSymbol(e[1], vitsMem + e[2], true)
+  end
+  writeQword(vitsMem, 0)
+  writeInteger(vitsMem + OFF_LANG, vitsLangCur)
+
+  vitsBuildItemIndex()
+  applyLang(vitsLangCur, false)
+
+  if vitsSelTimer == nil then
+    vitsSelTimer = createTimer(nil)
+    timer_setInterval(vitsSelTimer, 100)
+    timer_onTimer(vitsSelTimer, vitsSelTick)
+  end
+  timer_setEnabled(vitsSelTimer, true)
+end
+
+function vitsSelStop()
+  if vitsSelTimer ~= nil then
+    timer_setEnabled(vitsSelTimer, false)
+    object_destroy(vitsSelTimer)
+    vitsSelTimer = nil
+  end
+  for _, e in ipairs(VITS_LAYOUT) do
+    unregisterSymbol(e[1])
+  end
+  if vitsMem ~= nil and vitsMem ~= 0 then
+    deAlloc(vitsMem)
+    vitsMem = nil
+  end
+  vitsItemIndex = nil
+  nameCache = {}
+  idShadow = {}
+end
+</LuaScript>
+</CheatTable>

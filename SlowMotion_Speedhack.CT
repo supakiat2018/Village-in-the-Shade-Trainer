@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"=== ⏱️ Village in the Shade - Slow Motion (ควบคุมความเร็วเกม) ==="</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"⏱️ [แนะนำ] สโลว์โมชั่น 0.3x (ช้าลง 3 เท่า - เป่านกหวีดทันสบายๆ) [ปุ่ม Num -]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.3) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>109</Key>
+          </Keys>
+          <Description>Toggle Slow Motion 0.3x</Description>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"⏱️ สโลว์โมชั่น 0.2x (ช้าลง 5 เท่า - สโลว์มาก เหมาะกับคนกดไม่ทันจริงๆ)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.2) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"⏱️ สโลว์โมชั่น 0.5x (ช้าลง 2 เท่า)"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(0.5) end
+{$asm}
+
+[DISABLE]
+{$lua}
+if speedhack_setSpeed then speedhack_setSpeed(1.0) end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <LuaScript>
+local processName = "village.exe"
+openProcess(processName)
+  </LuaScript>
+</CheatTable>
