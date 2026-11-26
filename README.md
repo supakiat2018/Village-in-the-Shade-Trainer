@@ -1,4 +1,4 @@
-# Village in the Shade — Trainer & Item Spawner (v1.32)
+# Village in the Shade — Trainer & Item Spawner (v1.30-v1.32)
 
 🌿 โปรแกรมโกงเกมและแผงเสกไอเทมสำหรับ **Village in the Shade (静谧田园)** เวอร์ชัน 1.32  
 รองรับเมนู 2 ภาษา (**ไทย 🇹🇭 / English 🇬🇧**) พร้อมระบบปรับแต่งปุ่มลัดอิสระและแผงค้นหาไอเทมมากกว่า 2,850 ชิ้น
